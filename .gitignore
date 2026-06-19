@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+
+# Editor
+.vscode/
+.idea/
+
+# 민감 정보 — PDF 티켓·예약 (개인정보 + QR 코드 노출 위험)
+*.pdf
+
+# Claude session
+.claude/
+
+# 개인 메모
+NEXT_SESSION_PROMPT.md

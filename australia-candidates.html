@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026년 9~12월 호주 커플 여행 후보 지역 비교 — 시드니 anchor + 2순위 지역 선택용">
+<title>호주 여행 2026 · 후보 지역 비교</title>
+<style>
+  :root {
+    --sand: #f7f1e6;
+    --paper: #ffffff;
+    --ocean: #1f4a5c;
+    --ocean-soft: #3a6e83;
+    --coral: #d96b4a;
+    --coral-soft: #f0a487;
+    --sun: #e6a23c;
+    --text: #1f2a30;
+    --text-soft: #4a5a64;
+    --text-mute: #8a98a0;
+    --border: #d9d2c4;
+    --bg-section: #f0e8d8;
+    --reef: #2a8e8e;
+    --uluru: #b8552f;
+    --gor: #3d7a5c;
+    --tas: #5a4e8c;
+    --whit: #2f7fb8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Helvetica Neue", "Segoe UI", sans-serif;
+    background: var(--sand);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--ocean); }
+
+  /* HEADER */
+  header.hero {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--ocean-soft) 100%);
+    color: #fff;
+    padding: 50px 0 40px;
+  }
+  .hero-inner { text-align: center; }
+  .hero-eyebrow {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .hero p {
+    font-size: 16px;
+    opacity: 0.92;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    font-size: 14px;
+  }
+  .hero-meta span {
+    background: rgba(255,255,255,0.12);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  /* SECTIONS */
+  section { padding: 50px 0; }
+  section.alt { background: var(--bg-section); }
+  h2.section-title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    color: var(--ocean);
+  }
+  .section-sub {
+    color: var(--text-soft);
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+
+  /* COMBO CARDS */
+  .combos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .combo {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--coral);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  }
+  .combo.featured { border-top-color: var(--sun); }
+  .combo.long { border-top-color: var(--reef); }
+  .combo-tag {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    font-weight: 600;
+  }
+  .combo h3 {
+    font-size: 18px;
+    margin: 6px 0 10px;
+    color: var(--ocean);
+  }
+  .combo .duration {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--coral);
+    margin-bottom: 12px;
+  }
+  .combo p { font-size: 14px; color: var(--text-soft); }
+  .combo .when {
+    margin-top: 12px;
+    font-size: 13px;
+    padding: 6px 10px;
+    background: var(--bg-section);
+    border-radius: 6px;
+    color: var(--text);
+    display: inline-block;
+  }
+
+  /* REGION CARDS */
+  .region {
+    background: var(--paper);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  }
+  .region-header {
+    padding: 22px 26px 12px;
+    border-left: 6px solid var(--reef);
+  }
+  .region.uluru .region-header { border-left-color: var(--uluru); }
+  .region.gor .region-header { border-left-color: var(--gor); }
+  .region.tas .region-header { border-left-color: var(--tas); }
+  .region.whit .region-header { border-left-color: var(--whit); }
+
+  .region-num {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--text-mute);
+    font-weight: 600;
+  }
+  .region-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 4px 0 6px;
+  }
+  .region-name .ko { color: var(--ocean); }
+  .region-mood {
+    font-size: 15px;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+
+  .region-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+  }
+  .region-images figure {
+    margin: 0;
+    position: relative;
+    background: var(--bg-section);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .region-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .region-images figcaption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: #fff;
+    padding: 30px 14px 10px;
+    font-size: 12px;
+  }
+
+  .region-body {
+    padding: 22px 26px 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .region-body h4 {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .region-body p, .region-body li {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .region-body ul { padding-left: 16px; }
+  .region-body li { margin-bottom: 4px; }
+
+  .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .badge {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: var(--bg-section);
+    color: var(--text);
+  }
+  .badge.good { background: #d8efd8; color: #2c6b2c; }
+  .badge.warn { background: #f9e3d2; color: #a04a17; }
+
+  .access-row {
+    display: flex;
+    gap: 20px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-soft);
+  }
+  .access-row b { color: var(--text); font-weight: 600; }
+
+  /* COMPARISON TABLE */
+  .compare-wrap { overflow-x: auto; background: var(--paper); border-radius: 12px; border: 1px solid var(--border); }
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 720px;
+  }
+  table.compare th, table.compare td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  table.compare thead th {
+    background: var(--bg-section);
+    color: var(--ocean);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  table.compare tbody tr:last-child td { border-bottom: none; }
+  table.compare .stars { color: var(--sun); letter-spacing: 1px; }
+
+  /* NEXT STEPS */
+  .next {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 26px;
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--coral);
+  }
+  .next h3 { font-size: 18px; color: var(--ocean); margin-bottom: 12px; }
+  .next ol { padding-left: 22px; }
+  .next li { margin-bottom: 8px; font-size: 14px; color: var(--text); }
+
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--text-mute);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 800px) {
+    .hero h1 { font-size: 26px; }
+    .combos { grid-template-columns: 1fr; }
+    .region-body { grid-template-columns: 1fr; }
+    .region-images { grid-template-columns: 1fr; }
+    section { padding: 36px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container hero-inner">
+    <div class="hero-eyebrow">Australia 2026 · Couple Trip</div>
+    <h1>호주 여행 후보 지역 비교</h1>
+    <p>시드니를 anchor로 두고, 2순위 지역을 결정하기 위한 시각 비교판. 9~12월 윈도우·표준 페이스·대자연·명소 컨셉 기준.</p>
+    <div class="hero-meta">
+      <span>📍 시드니 1순위 확정</span>
+      <span>📅 9~12월 사이</span>
+      <span>👫 남자친구 동반</span>
+      <span>⏱ 7~12박 후보</span>
+    </div>
+  </div>
+</header>
+
+<!-- COMBOS -->
+<section>
+  <div class="container">
+    <h2 class="section-title">권장 조합 3개</h2>
+    <p class="section-sub">기간·시기·동선·기후를 종합한 시드니 anchor 조합. 후보 지역 카드를 본 뒤 다시 올라와 비교해도 좋아.</p>
+
+    <div class="combos">
+      <div class="combo">
+        <div class="combo-tag">짧고 클래식</div>
+        <h3>시드니 + 케언즈</h3>
+        <div class="duration">7박 8일</div>
+        <p>대도시 + 산호초의 클래식 대조. 비행 단순(직항 3h), 패키지 호텔·다이빙 풀.</p>
+        <span class="when">🌸 9월 말~10월 초 추천</span>
+      </div>
+
+      <div class="combo featured">
+        <div class="combo-tag">풀스펙트럼 · 추천</div>
+        <h3>시드니 + 울룰루 + 휘트선데이</h3>
+        <div class="duration">8박 9일</div>
+        <p>도시·사막·해변 세 가지 무드. 비행 3회지만 각 90분~3h. 럭셔리 디너·별빛·세일링.</p>
+        <span class="when">🌅 10월 추천 (골든 윈도우)</span>
+      </div>
+
+      <div class="combo long">
+        <div class="combo-tag">슬로·미식 풀코스</div>
+        <h3>시드니 + 멜번/GOR + 태즈매니아</h3>
+        <div class="duration">11박 12일</div>
+        <p>남부 슬로 트래블. 렌터카·와이너리·드라이브·MONA·크래들 마운틴까지. 휴가+주말 양쪽 활용.</p>
+        <span class="when">🍃 11월 추천</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGIONS -->
+<section class="alt">
+  <div class="container">
+    <h2 class="section-title">2순위 후보 5개 지역</h2>
+    <p class="section-sub">각 지역 사진을 보고 끌리는 분위기·액티비티 기준으로 골라줘. 시기 적합도·시드니 접근성은 카드 안에 표기.</p>
+
+    <!-- 1. Cairns & GBR -->
+    <div class="region reef">
+      <div class="region-header">
+        <div class="region-num">01</div>
+        <div class="region-name">Cairns & Great Barrier Reef <span class="ko">· 케언즈 / 그레이트배리어리프</span></div>
+        <div class="region-mood">에메랄드 산호초와 야자수가 늘어선 트로피컬 해변, 데일리 리프 보트 + 저녁 에스플러네이드 산책의 휴양 무드.</div>
+      </div>
+      <div class="region-images">
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Part_of_Great_Barrier_Reef_from_Helicopter.jpg/960px-Part_of_Great_Barrier_Reef_from_Helicopter.jpg" alt="헬리콥터에서 본 그레이트배리어리프" loading="lazy">
+          <figcaption>헬리콥터에서 본 그레이트배리어리프</figcaption>
+        </figure>
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Giant_clam_with_diver.jpg/960px-Giant_clam_with_diver.jpg" alt="산호초에서 다이빙 중인 다이버" loading="lazy">
+          <figcaption>산호초 다이빙</figcaption>
+        </figure>
+      </div>
+      <div class="region-body">
+        <div>
+          <h4>최적 시기 · 회피</h4>
+          <div class="badge-row">
+            <span class="badge good">9~10월 베스트</span>
+            <span class="badge warn">11월 중순~12월 우기·해파리</span>
+          </div>
+          <p style="margin-top:10px; font-size:13px; color:var(--text-soft);">건기 막바지·평균 25~28°C·수온 24°C·시야 20m+, 다이빙 골든 윈도우.</p>
+        </div>
+        <div>
+          <h4>Top 3 액티비티</h4>
+          <ul>
+            <li>그레이트배리어리프 스노클·다이빙 데이트립</li>
+            <li>쿠란다 스카이레일 + 헤리티지 열차</li>
+            <li>데인트리 우림 야간 동물탐사</li>
+          </ul>
+        </div>
+        <div>
+          <h4>시드니에서 접근</h4>
+          <div class="access-row">
+            <span><b>3h</b> 직항</span>
+            <span><b>AUD 180~320</b> 편도</span>
+            <span><b>3~4박</b> 권장</span>
+          </div>
+        </div>
+        <div>
+          <h4>커플 무드</h4>
+          <p style="font-size:13px;">트로피컬·다이빙·우림. 휴양형 호텔(쉐라톤 미라지·크리스털브룩) 풀.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Uluru -->
+    <div class="region uluru">
+      <div class="region-header">
+        <div class="region-num">02</div>
+        <div class="region-name">Uluru / Red Centre <span class="ko">· 울룰루 / 레드센터</span></div>
+        <div class="region-mood">붉은 사막 한가운데 솟은 거대한 모놀리스. 일몰에 보랏빛으로 변하는 신성한 대지와 별빛 하늘.</div>
+      </div>
+      <div class="region-images">
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/ULURU.jpg/960px-ULURU.jpg" alt="사막 위에 솟은 울룰루" loading="lazy">
+          <figcaption>사막 위에 솟은 울룰루</figcaption>
+        </figure>
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Uluru_from_above_Iss049e010638_lrg.jpg/960px-Uluru_from_above_Iss049e010638_lrg.jpg" alt="상공에서 본 울룰루" loading="lazy">
+          <figcaption>상공에서 본 울룰루와 레드센터</figcaption>
+        </figure>
+      </div>
+      <div class="region-body">
+        <div>
+          <h4>최적 시기 · 회피</h4>
+          <div class="badge-row">
+            <span class="badge good">9~10월 베스트</span>
+            <span class="badge warn">12월 폭염 38~45°C</span>
+          </div>
+          <p style="margin-top:10px; font-size:13px; color:var(--text-soft);">낮 25~30°C·밤 10°C·파리 적고 청명. Field of Light 운영.</p>
+        </div>
+        <div>
+          <h4>Top 3 액티비티</h4>
+          <ul>
+            <li>울룰루 베이스워크(10km) 또는 카타추타 윈드밸리 트레킹</li>
+            <li>사운즈 오브 사일런스 디너 + 별 관측</li>
+            <li>Field of Light 일출 산책</li>
+          </ul>
+        </div>
+        <div>
+          <h4>시드니에서 접근</h4>
+          <div class="access-row">
+            <span><b>3h25m</b> 직항 (AYQ)</span>
+            <span><b>AUD 280~480</b> 편도</span>
+            <span><b>2~3박</b> 권장</span>
+          </div>
+        </div>
+        <div>
+          <h4>커플 무드</h4>
+          <p style="font-size:13px;">신성·별빛·럭셔리 디너. Sails in the Desert / Longitude 131° 럭셔리 옵션.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Great Ocean Road -->
+    <div class="region gor">
+      <div class="region-header">
+        <div class="region-num">03</div>
+        <div class="region-name">Great Ocean Road <span class="ko">· 그레이트오션로드 (멜번 출발)</span></div>
+        <div class="region-mood">남빙양 절벽에 솟은 12사도 석회암 기둥. 유칼립투스 우림과 와이너리·라이트하우스가 이어지는 드라이브 로드.</div>
+      </div>
+      <div class="region-images">
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/The_Twelve_Apostles_2011.jpg/960px-The_Twelve_Apostles_2011.jpg" alt="12사도 석회암 기둥" loading="lazy">
+          <figcaption>12사도 석회암 기둥</figcaption>
+        </figure>
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Great_Ocean_Road%2C_Lorne%2C_Australia_-_Feb_2012.jpg/960px-Great_Ocean_Road%2C_Lorne%2C_Australia_-_Feb_2012.jpg" alt="로른 인근 그레이트오션로드 해안 드라이브" loading="lazy">
+          <figcaption>로른 인근 해안 드라이브</figcaption>
+        </figure>
+      </div>
+      <div class="region-body">
+        <div>
+          <h4>최적 시기 · 회피</h4>
+          <div class="badge-row">
+            <span class="badge good">11월 베스트</span>
+            <span class="badge warn">9월 초 변덕 비바람</span>
+          </div>
+          <p style="margin-top:10px; font-size:13px; color:var(--text-soft);">봄 야생화·코알라 활동 활발. 평균 18~22°C, 일조시간 길어 일몰 드라이브 유리.</p>
+        </div>
+        <div>
+          <h4>Top 3 액티비티</h4>
+          <ul>
+            <li>12사도 일출·헬리콥터 플라이트</li>
+            <li>그레이트오트웨이 우림 + 케이프 오트웨이 라이트하우스</li>
+            <li>멜번 시티(라네웨이 카페·빅토리아국립미술관)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>시드니에서 접근</h4>
+          <div class="access-row">
+            <span><b>1h30m</b> 멜번 직항</span>
+            <span><b>AUD 100~220</b> 편도</span>
+            <span><b>3~4박</b> (멜번 1 + GOR 2)</span>
+          </div>
+        </div>
+        <div>
+          <h4>커플 무드</h4>
+          <p style="font-size:13px;">드라이브·와인·카페. 멜번 도시 무드 + GOR 자연 콤보.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Tasmania -->
+    <div class="region tas">
+      <div class="region-header">
+        <div class="region-num">04</div>
+        <div class="region-name">Tasmania <span class="ko">· 태즈매니아</span></div>
+        <div class="region-mood">청록빛 와인글래스만과 크래들 마운틴의 빙하호. 살라망카 마켓·MONA 미술관·콜드 클라이밋 와이너리가 어우러진 슬로 트래블 섬.</div>
+      </div>
+      <div class="region-images">
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Wineglass_Bay%2C_Freycinet_Peninsula%2C_Tasmania%2C_Australia_%2819333396893%29.jpg/960px-Wineglass_Bay%2C_Freycinet_Peninsula%2C_Tasmania%2C_Australia_%2819333396893%29.jpg" alt="와인글래스 베이 곡선 비치" loading="lazy">
+          <figcaption>마운트 아모스에서 본 와인글래스 베이</figcaption>
+        </figure>
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/CradleMountainTas_b.jpg/960px-CradleMountainTas_b.jpg" alt="크래들 마운틴과 도브 레이크" loading="lazy">
+          <figcaption>크래들 마운틴과 도브 레이크</figcaption>
+        </figure>
+      </div>
+      <div class="region-body">
+        <div>
+          <h4>최적 시기 · 회피</h4>
+          <div class="badge-row">
+            <span class="badge good">11~12월 베스트</span>
+            <span class="badge warn">9월 늦겨울 잔설</span>
+          </div>
+          <p style="margin-top:10px; font-size:13px; color:var(--text-soft);">늦봄·초여름, 일조 14h, 평균 13~21°C. 야생화 만개.</p>
+        </div>
+        <div>
+          <h4>Top 3 액티비티</h4>
+          <ul>
+            <li>크래들 마운틴 도브 레이크 서킷 트레킹</li>
+            <li>와인글래스만 + 프레이시넷 NP 보트</li>
+            <li>호바트 MONA + 살라망카 토요마켓·위스키 테이스팅</li>
+          </ul>
+        </div>
+        <div>
+          <h4>시드니에서 접근</h4>
+          <div class="access-row">
+            <span><b>1h55m</b> 호바트 직항</span>
+            <span><b>AUD 120~260</b> 편도</span>
+            <span><b>5~6박</b> 권장 (렌터카 필수)</span>
+          </div>
+        </div>
+        <div>
+          <h4>커플 무드</h4>
+          <p style="font-size:13px;">슬로·미식·자연. 짧게 다녀오기 아까운 섬 — 11~12박 장기 일정 시 우선 고려.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Whitsundays -->
+    <div class="region whit">
+      <div class="region-header">
+        <div class="region-num">05</div>
+        <div class="region-name">Whitsundays / Hamilton Island <span class="ko">· 휘트선데이 / 해밀턴 아일랜드</span></div>
+        <div class="region-mood">새하얀 실리카 모래의 화이트헤븐 비치. 힐 인렛의 청록 소용돌이. 요트로 떠다니는 74개 섬 군도.</div>
+      </div>
+      <div class="region-images">
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Whitehaven_Beach%2C_Whitsunday_Island%2C_Queensland.jpg/960px-Whitehaven_Beach%2C_Whitsunday_Island%2C_Queensland.jpg" alt="화이트헤븐 비치 항공 뷰" loading="lazy">
+          <figcaption>화이트헤븐 비치 항공 뷰</figcaption>
+        </figure>
+        <figure>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Whitsunday_islands.jpg/960px-Whitsunday_islands.jpg" alt="휘트선데이 군도" loading="lazy">
+          <figcaption>휘트선데이 군도 항공 뷰</figcaption>
+        </figure>
+      </div>
+      <div class="region-body">
+        <div>
+          <h4>최적 시기 · 회피</h4>
+          <div class="badge-row">
+            <span class="badge good">9~10월 베스트</span>
+            <span class="badge warn">11월 후반~12월 우기·해파리·사이클론</span>
+          </div>
+          <p style="margin-top:10px; font-size:13px; color:var(--text-soft);">건기 막바지·해파리 시즌 전·수온 23°C·트레이드윈드 약함.</p>
+        </div>
+        <div>
+          <h4>Top 3 액티비티</h4>
+          <ul>
+            <li>화이트헤븐 비치 + 힐 인렛 룩아웃 보트투어</li>
+            <li>하트 리프 시플레인 또는 헬리 플라이트</li>
+            <li>해밀턴 아일랜드 골프·선셋 디너 크루즈</li>
+          </ul>
+        </div>
+        <div>
+          <h4>시드니에서 접근</h4>
+          <div class="access-row">
+            <span><b>2h50m</b> 해밀턴 직항</span>
+            <span><b>AUD 220~400</b> 편도</span>
+            <span><b>3~4박</b> 권장</span>
+          </div>
+        </div>
+        <div>
+          <h4>커플 무드</h4>
+          <p style="font-size:13px;">리조트·세일링·허니문급. qualia·Beach Club 럭셔리 옵션, 아일랜드 전체 리조트형.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section>
+  <div class="container">
+    <h2 class="section-title">한 줄 비교표</h2>
+    <p class="section-sub">시드니 anchor + 표준 페이스 + 9~12월 윈도우 관점에서 어느 조합이 어울리는지 종합 점수.</p>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>지역</th>
+            <th>최적 시기</th>
+            <th>비행</th>
+            <th>체류</th>
+            <th>커플 무드</th>
+            <th>시드니 조합 적합도</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Cairns & GBR</b></td>
+            <td>9~10월</td>
+            <td>3h</td>
+            <td>3~4박</td>
+            <td>트로피컬·다이빙</td>
+            <td><span class="stars">★★★★★</span> 대조 무드</td>
+          </tr>
+          <tr>
+            <td><b>Uluru</b></td>
+            <td>9~10월</td>
+            <td>3h25m</td>
+            <td>2~3박</td>
+            <td>신성·별빛·디너</td>
+            <td><span class="stars">★★★★☆</span> 포인트 추가</td>
+          </tr>
+          <tr>
+            <td><b>Great Ocean Road</b></td>
+            <td>11월</td>
+            <td>1h30 + 드라이브</td>
+            <td>3~4박</td>
+            <td>드라이브·와인</td>
+            <td><span class="stars">★★★★☆</span> 도시 콤보</td>
+          </tr>
+          <tr>
+            <td><b>Tasmania</b></td>
+            <td>11~12월</td>
+            <td>1h55m</td>
+            <td>5~6박</td>
+            <td>슬로·미식·자연</td>
+            <td><span class="stars">★★★☆☆</span> 체류 김</td>
+          </tr>
+          <tr>
+            <td><b>Whitsundays</b></td>
+            <td>9~10월</td>
+            <td>2h50m</td>
+            <td>3~4박</td>
+            <td>리조트·세일링</td>
+            <td><span class="stars">★★★★★</span> 허니문급</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:18px; font-size:13px; color:var(--text-soft);">
+      📌 핵심: <b>9~10월 윈도우</b>는 북부(케언즈·휘트선데이) + 울룰루가 기후 골든존. <b>11~12월 윈도우</b>는 남부(태즈매니아·GOR)가 우위.
+      시기와 지역이 서로 묶여 있어서, 둘 중 하나를 먼저 결정하면 나머지가 자연스럽게 좁혀짐.
+    </p>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section class="alt">
+  <div class="container">
+    <h2 class="section-title">다음 단계</h2>
+    <p class="section-sub">아래 결정만 내려주면 Phase 2(루트 락) → Phase 3(호텔)로 진행 가능.</p>
+
+    <div class="next">
+      <h3>결정해줄 것</h3>
+      <ol>
+        <li><b>2순위 지역 1~2개</b>: 위 5개 중 끌리는 분위기로 선택. (예: 케언즈, 또는 울룰루+휘트선데이)</li>
+        <li><b>출국 월</b>: 9월 / 10월 / 11월 / 12월 — 선택한 지역의 시기 적합도와 맞춰서.</li>
+        <li><b>총 기간</b>: 7박 8일 / 9박 10일 / 11박 12일.</li>
+        <li><b>항공편 IN/OUT 도시</b>: 시드니 왕복 vs 시드니 IN / 다른 도시 OUT(오픈조).</li>
+      </ol>
+
+      <h3 style="margin-top:20px;">결정 후 Claude가 할 일</h3>
+      <ol>
+        <li>확정 루트로 일자별 일정 초안 (Phase 2 락)</li>
+        <li>도시별 호텔 후보 3개씩 비교 (Phase 3)</li>
+        <li>도시간 항공편·렌터카 옵션 비교 (Phase 4)</li>
+        <li>핵심 명소·액티비티 사전예약 우선순위 리스트 (Phase 5)</li>
+        <li>도시별 식당 큐레이션 + 사전예약 (Phase 6)</li>
+        <li>오스트리아 여행처럼 통합 SSOT HTML 사이트 빌드 (Phase 7)</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Australia 2026 · Couple Trip Candidates · 마지막 업데이트 2026-05-30<br>
+  이미지 출처: Wikimedia Commons (검증된 URL)
+</footer>
+
+</body>
+</html>

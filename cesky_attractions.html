@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>체스키크룸로프 명소 카탈로그 · 가족 프라이빗 투어 2026</title>
+<style>
+  :root {
+    --wine: #6b2737;
+    --wine-soft: #8a4351;
+    --gold: #c8a35d;
+    --paper: #fdf9ef;
+    --bg: #f7efdc;
+    --bg-section: #faf3e0;
+    --text: #3a2a1e;
+    --text-soft: #5a4534;
+    --text-mute: #8b7355;
+    --border: #e6d9b8;
+    --shadow: 0 2px 14px rgba(60, 40, 30, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    padding: 24px 16px 60px;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* 헤더 */
+  header.intro {
+    background: linear-gradient(135deg, var(--wine) 0%, var(--wine-soft) 100%);
+    color: #fdf5e6;
+    padding: 38px 32px;
+    border-radius: 14px;
+    margin-bottom: 26px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  header.intro::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(107,39,55,0.55), rgba(107,39,55,0.75)),
+                      url('https://commons.wikimedia.org/wiki/Special:FilePath/Historic_Centre_of_%C4%8Cesk%C3%BD_Krumlov-111747.jpg?width=1200');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+  header.intro > * {
+    position: relative;
+    z-index: 1;
+  }
+  header.intro .label {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  header.intro h1 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  header.intro .sub {
+    font-size: 1.02rem;
+    opacity: 0.92;
+    font-style: italic;
+  }
+  header.intro .dates {
+    margin-top: 16px;
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    font-size: 0.86rem;
+  }
+
+  /* 동선 분산 안내 */
+  .split-guide {
+    background: var(--paper);
+    border-left: 4px solid var(--gold);
+    padding: 18px 22px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+  }
+  .split-guide h2 {
+    color: var(--wine);
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .split-guide p {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+  }
+  .split-guide b { color: var(--wine); }
+
+  /* 명소 그리드 */
+  .poi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 22px;
+  }
+
+  /* 명소 카드 */
+  .poi-card {
+    background: var(--paper);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s ease;
+  }
+  .poi-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .poi-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-section);
+    overflow: hidden;
+    position: relative;
+  }
+  .poi-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* 이미지 로딩 실패 시 그라데이션 + 이모지 fallback (컴팩트) */
+  .poi-img.no-img {
+    aspect-ratio: auto;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--wine) 0%, var(--wine-soft) 60%, var(--gold) 100%);
+  }
+  .poi-img.no-img::before {
+    content: attr(data-emoji);
+    font-size: 3rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+  .poi-img.no-img img { display: none; }
+  .poi-img[data-color="castle"].no-img { background: linear-gradient(135deg, #6b2737 0%, #a36849 100%); }
+  .poi-img[data-color="bridge"].no-img { background: linear-gradient(135deg, #4a6b75 0%, #87a5a8 100%); }
+  .poi-img[data-color="river"].no-img { background: linear-gradient(135deg, #3d6e87 0%, #7cb0c4 100%); }
+  .poi-img[data-color="town"].no-img { background: linear-gradient(135deg, #8b5a3c 0%, #c8a35d 100%); }
+  .poi-img[data-color="church"].no-img { background: linear-gradient(135deg, #4a3a55 0%, #8a7a9a 100%); }
+  .poi-img[data-color="art"].no-img { background: linear-gradient(135deg, #6a4a3c 0%, #c89a7a 100%); }
+  .poi-img[data-color="food"].no-img { background: linear-gradient(135deg, #8a4a1a 0%, #d4a050 100%); }
+  .poi-img .badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(107, 39, 55, 0.92);
+    color: #fdf5e6;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+  }
+
+  .poi-body {
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .poi-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .poi-meta span {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--bg-section);
+    color: var(--wine);
+    font-weight: 600;
+    border: 1px solid var(--border);
+  }
+  .poi-meta span.free { color: #4a7333; background: #e8f3da; border-color: #c9e0a8; }
+  .poi-meta span.paid { color: #8a4a1a; background: #fbeed5; border-color: #e6d09c; }
+
+  .poi-card h3 {
+    color: var(--wine);
+    font-size: 1.18rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+  }
+  .poi-card .poi-sub {
+    font-size: 0.84rem;
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .poi-card .poi-desc {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+    flex: 1;
+  }
+  .poi-card .poi-attract,
+  .poi-card .poi-tip {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .poi-card .poi-attract {
+    background: #f5e9d5;
+    border-left: 3px solid var(--gold);
+    color: #5a3e1e;
+  }
+  .poi-card .poi-tip {
+    background: #eef6e3;
+    border-left: 3px solid #7a9456;
+    color: #3d5223;
+  }
+  .poi-card .poi-attract b,
+  .poi-card .poi-tip b {
+    color: var(--wine);
+  }
+
+  /* 그룹 헤더 */
+  .group-head {
+    margin: 30px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+  }
+  .group-head h2 {
+    color: var(--wine);
+    font-size: 1.35rem;
+    margin-bottom: 4px;
+  }
+  .group-head .group-sub {
+    font-size: 0.84rem;
+    color: var(--text-mute);
+  }
+
+  /* 추천 동선 */
+  .plan {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-top: 30px;
+    box-shadow: var(--shadow);
+  }
+  .plan h2 {
+    color: var(--wine);
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+  }
+  .plan-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .plan-tabs span {
+    padding: 6px 14px;
+    background: var(--bg-section);
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--wine);
+    border: 1px solid var(--border);
+  }
+  .plan-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--border);
+    font-size: 0.9rem;
+  }
+  .plan-row:first-of-type {
+    border-top: none;
+  }
+  .plan-row .t {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .plan-row .a b { color: var(--wine); }
+
+  /* 모바일 */
+  @media (max-width: 540px) {
+    body { padding: 16px 10px 40px; }
+    header.intro { padding: 28px 20px; }
+    header.intro h1 { font-size: 1.6rem; }
+    .poi-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="intro">
+    <div class="label">CITY 4 · 1박 2일 · UNESCO 1992</div>
+    <h1>체스키크룸로프</h1>
+    <div class="sub">동화 같은 보헤미아 중세 마을 · 블타바 강이 휘감은 빨간 지붕</div>
+    <div class="dates">📅 2026.6.18 (목) 15:30 도착 → 6/19 (금) 14:00 출발</div>
+  </header>
+
+  <div class="split-guide">
+    <h2>💡 양일 분산 가능</h2>
+    <p>현재 일정은 <b>6/18 PM 도착 후 광장·강변·다리·성 외관·황혼 매직아워</b>를 한 번에, <b>6/19 AM은 워킹투어 + 점심·디저트</b>로 구성. 워킹투어 빼고 <b>아래 명소를 양일에 분산</b>해서 부모님 페이스로 천천히 보는 것도 가능. 각 명소의 매력·시간·가격 보고 결정.</p>
+  </div>
+
+  <!-- 그룹 1: 성 -->
+  <div class="group-head">
+    <h2>🏰 1. 성 — 마을의 심장</h2>
+    <div class="group-sub">두 번째로 큰 보헤미아 성 (프라하 성 다음) · 13세기 고딕 → 16세기 르네상스 → 18세기 바로크 증축</div>
+  </div>
+
+  <div class="poi-grid">
+
+    <!-- 1. 체스키 성 외관 + 곰 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cesk%C3%BD_Krumlov%2C_Castle_view.jpg?width=600" alt="체스키 성 외관" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Historic_Centre_of_%C4%8Cesk%C3%BD_Krumlov-111747.jpg?width=600'">
+        <span class="badge">⭐⭐⭐ 필수</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>30~60분</span>
+          <span class="free">외관 무료</span>
+          <span>안마당·곰</span>
+        </div>
+        <h3>체스키 성 외관 + 성벽 곰</h3>
+        <div class="poi-sub">13세기 비투스 가문 → 로젠베르크 → 에겐베르크 → 슈바르첸베르크</div>
+        <p class="poi-desc">광장에서 도보 8분. 정문 (Červená brána, 붉은 문) → 5개의 안마당 → 회전 다리. <b>해자 안에 진짜 살아있는 곰</b>이 있음 — 15세기부터 마스코트, 현재 마리아·카탸 두 마리.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 마을 어디서나 보이는 르네상스·바로크 외관. 정문·안마당·붉은 문·곰까지 무료로 산책. 사진 명소 多.
+        </div>
+        <div class="poi-tip">
+          💡 <b>야경 ⭐</b> 일몰 후 (21:00~) 조명 받은 성이 진짜 마법. 6/18 황혼 매직아워에 이미 일정 있음.
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. 성 내부 (Circuit) -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov%2C_Mirror_Hall.jpg?width=600" alt="성 내부 거울의 방" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Hall_of_Mirrors_-_Mirror_Hall%2C_Cesky_Krumlov.jpg?width=600'">
+        <span class="badge">유료 가이드</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>50분</span>
+          <span class="paid">€10/인</span>
+          <span>영어 가이드</span>
+        </div>
+        <h3>성 내부 · Circuit I (르네상스)</h3>
+        <div class="poi-sub">에겐베르크 마차 홀·황금 마차·거울의 방</div>
+        <p class="poi-desc">정해진 시간(09:00·10:00·11:00 등) 영어 가이드 투어로만 입장. 약 50분. 르네상스 홀 + 19세기 슈바르첸베르크 일가 침실·서재 + Hall of Mirrors(거울의 방). 250 CZK ≈ €10/인.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 17세기 황금 마차 · 거울의 방 · 가족 초상화 · 진짜 보헤미아 귀족 일상 공간.
+        </div>
+        <div class="poi-tip">
+          💡 영어 가이드라 부모님께 부담될 수 있음. 풍경 위주로 즐기기.
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. 성탑 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov_castle_tower.jpg?width=600" alt="체스키 성탑" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov_tower.jpg?width=600'">
+        <span class="badge">⭐⭐ 전망</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>30분</span>
+          <span class="paid">€4/인</span>
+          <span>162계단 ⚠️</span>
+        </div>
+        <h3>성탑 (Zámecká věž)</h3>
+        <div class="poi-sub">13세기 고딕 + 16세기 르네상스 채색 86m 탑</div>
+        <p class="poi-desc">알록달록 채색된 르네상스 외장 — 마을 어디서나 시그니처 랜드마크. <b>162계단 등반</b>하면 빨간 지붕 지붕·블타바 강·들판이 한 컷에. 정상 직경 작아서 한 번에 10명 정도.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 마을 가장 높은 전망 ⭐⭐ — 사진 명소. 채색 외장 사진은 아래에서도 가능.
+        </div>
+        <div class="poi-tip">
+          ⚠️ <b>162계단 무릎 부담</b> — 부모님 컨디션 보고 결정. 외관은 강·다리 어디서나 잘 보임.
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. 성 정원 + 회전 극장 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov_castle_garden.jpg?width=600" alt="성 정원" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Krumlov_z%C3%A1mek_zahrada.jpg?width=600'">
+        <span class="badge">⭐ 산책</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>45~60분</span>
+          <span class="free">무료</span>
+          <span>평지·산책</span>
+        </div>
+        <h3>성 정원 (Zámecká zahrada)</h3>
+        <div class="poi-sub">17세기 바로크 정원 · 분수 · 회전 야외 극장</div>
+        <p class="poi-desc">성 위쪽 11ha 정원. 본관에서 도보 5분 (좁은 다리 통과). 바로크 분수·꽃밭·산책로. 안에 <b>회전 야외 극장 (Otáčivé hlediště)</b> — 1958년 만든 객석이 회전하면서 자연 배경을 무대로 — 외관만 봐도 신기함.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 인적 적고 조용 ⭐ — 부모님 페이스에 평지 산책 최적. 마을·성 동시에 한 컷.
+        </div>
+        <div class="poi-tip">
+          💡 입장료 X — 09:00~19:00 무료 개방. 시간 부담 없이 자유 코스.
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- 그룹 2: 다리 + 강 -->
+  <div class="group-head">
+    <h2>🌉 2. 다리·강 — 시그니처 풍경</h2>
+    <div class="group-sub">블타바 강이 마을을 S자로 휘감음 · 다리 5개 · 강변 산책로</div>
+  </div>
+
+  <div class="poi-grid">
+
+    <!-- 5. 망토 다리 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cloak_Bridge%2C_Cesky_Krumlov.jpg?width=600" alt="망토 다리" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Pl%C3%A1%C5%A1%C5%A5ov%C3%BD_most.jpg?width=600'">
+        <span class="badge">⭐⭐⭐ 명소</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>20분</span>
+          <span class="free">무료</span>
+          <span>3층 아치</span>
+        </div>
+        <h3>망토 다리 (Plášťový most)</h3>
+        <div class="poi-sub">18세기 바로크 3층 아치교 — 성과 정원을 잇는 공중 다리</div>
+        <p class="poi-desc">성에서 정원까지 협곡 위를 가로지르는 <b>3층 아치 다리</b>. 길이 70m, 높이 30m. 위층은 비밀 통로(귀족 전용), 아래층은 일반인 통로. 다리 위에서 <b>마을 정면 + 성탑 한 컷</b> ⭐⭐ 시그니처.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 마을 사진의 정수 — 어느 각도로 찍어도 엽서. 자체도 건축 걸작.
+        </div>
+        <div class="poi-tip">
+          💡 6/18 황혼 매직아워(20:45)에 일정 있음. 아침에 한 번 더 가도 빛 다름.
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. 이발사의 다리 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lazebnick%C3%BD_most%2C_%C4%8Cesk%C3%BD_Krumlov.jpg?width=600" alt="이발사의 다리" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Lazebnicky_most.jpg?width=600'">
+        <span class="badge">전설</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>10분</span>
+          <span class="free">무료</span>
+          <span>강변 도보</span>
+        </div>
+        <h3>이발사의 다리 (Lazebnický most)</h3>
+        <div class="poi-sub">16세기 작은 목조 다리 · 광장 ↔ 성을 잇는 동선</div>
+        <p class="poi-desc">광장에서 성으로 갈 때 건너는 작은 다리. 다리 양 끝에 <b>성 요한 네포묵 + 그리스도 동상</b>. 전설: 16세기 황태자 돈 율리우스가 이발사 딸을 살해한 후 자살, 그 후 마을이 다리에 동상을 세움.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 강변 풍경 + 작지만 분위기 ⭐ — 다리 위에서 양쪽 강변과 마을 보임.
+        </div>
+        <div class="poi-tip">
+          💡 6/18 저녁에 이미 통과. 아침에 다시 건널 일 多 (성으로 가는 길).
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. 블타바 강 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Vltava_in_Cesky_Krumlov.jpg?width=600" alt="블타바 강" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov_Vltava.jpg?width=600'">
+        <span class="badge">강변</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>30~60분</span>
+          <span class="free">강변 산책 무료</span>
+          <span>뗏목 €15</span>
+        </div>
+        <h3>블타바 강변 산책 + 뗏목 (선택)</h3>
+        <div class="poi-sub">마을을 S자로 휘감는 강 · 6월엔 뗏목·카약 활성화</div>
+        <p class="poi-desc">강변 산책로 따라 마을 한 바퀴 — 작은 다리·물레방아·낮은 폭포(Krumlovský mlýn). <b>여름엔 뗏목 (raft)으로 마을 통과 가능</b> (~€15/인, 30분). 부모님이 보트 좋아하시면 옵션.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 마을을 물 위에서 보는 신선한 각도 — 뗏목 위에서 다리·성 동시에.
+        </div>
+        <div class="poi-tip">
+          💡 강변 카페 (Krumlovský mlýn, Papas) — 부드바르 맥주 + 강 풍경. 6/19 점심 옵션.
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- 그룹 3: 마을 -->
+  <div class="group-head">
+    <h2>🏘 3. 마을 — 골목·광장·교회</h2>
+    <div class="group-sub">UNESCO 1992 등재 · 핵심 면적 0.5km² 안에 르네상스·고딕 건물 300여 채</div>
+  </div>
+
+  <div class="poi-grid">
+
+    <!-- 8. 스보르노스티 광장 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/N%C3%A1m%C4%9Bst%C3%AD_Svornosti_%28%C4%8Cesk%C3%BD_Krumlov%29.jpg?width=600" alt="스보르노스티 광장" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov_-_namesti_svornosti.jpg?width=600'">
+        <span class="badge">⭐⭐ 중심</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>30~45분</span>
+          <span class="free">무료</span>
+          <span>구시가 중심</span>
+        </div>
+        <h3>스보르노스티 광장 (Náměstí Svornosti)</h3>
+        <div class="poi-sub">13세기부터 마을의 심장 · 페스트탑 + 시청 + 옛 약국</div>
+        <p class="poi-desc">호텔(Ebersbach) 도보 1분. 광장 한가운데 <b>페스트탑 (Mariánský sloup, 1715년 흑사병 종식 기념)</b>. 시청·옛 약국(Apatyka)·식당·카페 둘러쌈. 노점에서 Trdelník·기념품.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 마을 분위기의 응축. 광장 카페에 앉아 사람 구경만 해도 1시간.
+        </div>
+        <div class="poi-tip">
+          💡 단체 관광객 정오~16시 집중 → <b>아침 또는 저녁 추천</b>.
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Latrán 거리 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Latr%C3%A1n_street_Cesky_Krumlov.jpg?width=600" alt="Latrán 거리" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Latr%C3%A1n%2C_%C4%8Cesk%C3%BD_Krumlov.jpg?width=600'">
+        <span class="badge">골목</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>20~30분</span>
+          <span class="free">무료</span>
+          <span>옛 동네</span>
+        </div>
+        <h3>Latrán 거리</h3>
+        <div class="poi-sub">성 아래 옛 마을 지구 · 13세기 성벽 + 부도바 게이트</div>
+        <p class="poi-desc">광장에서 성으로 가는 길. 좁고 굽은 골목, 옛 건물의 외장 그대로. <b>부도바 게이트 (Budějovická brána, 1598년)</b>가 끝에. 작은 공방·갤러리·골동품 가게 多.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 관광객 적은 아침에 천천히 걸으면 — 중세 마을의 호흡.
+        </div>
+        <div class="poi-tip">
+          💡 6/18 저녁에 통과. 6/19 아침에 다시 걷기 좋음 (정원 가는 길).
+        </div>
+      </div>
+    </article>
+
+    <!-- 10. 성 비투스 교회 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cesky_Krumlov_-_kostel_sv._V%C3%ADta.jpg?width=600" alt="성 비투스 교회" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/St_Vitus_Church_Cesky_Krumlov.jpg?width=600'">
+        <span class="badge">고딕</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>15~25분</span>
+          <span class="free">무료</span>
+          <span>마을 내</span>
+        </div>
+        <h3>성 비투스 교회 (Kostel sv. Víta)</h3>
+        <div class="poi-sub">14세기 고딕 교회 · 첨탑 + 천장 아치</div>
+        <p class="poi-desc">광장에서 도보 3분. 마을의 두 번째 랜드마크(성탑과 함께) — 마을 사진 어디든 양쪽 첨탑이 같이. 내부 무료 — 천장 별 모양 늑골 천장·15세기 프레스코·로젠베르크 가문 묘지.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 무료 + 짧음 + 인적 적음. 내부 분위기가 의외로 풍부.
+        </div>
+        <div class="poi-tip">
+          💡 광장 ↔ 성 동선에 끼우기 좋음. 미사 때 (일요일 오전) 합창 보너스.
+        </div>
+      </div>
+    </article>
+
+    <!-- 11. 에곤 실레 미술관 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Egon_Schiele_Art_Centrum.jpg?width=600" alt="에곤 실레 미술관" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Schiele_centrum_Cesky_Krumlov.jpg?width=600'">
+        <span class="badge">미술</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>1시간</span>
+          <span class="paid">€8~10/인</span>
+          <span>오스트리아 표현주의</span>
+        </div>
+        <h3>에곤 실레 미술관 (Schiele Art Centrum)</h3>
+        <div class="poi-sub">실레가 1911년 잠시 살았던 마을 · 비엔나 표현주의의 자취</div>
+        <p class="poi-desc">실레의 어머니가 체스키 출신 — 1911년 실레가 빈에서 도피해 이 마을에 잠시 살며 작업. 영구 컬렉션 + 현대 미술 특별전. 16세기 양조장 건물 자체도 볼만.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 비엔나에서 본 실레와 다른 톤 — 시골에서 그린 풍경·인물.
+        </div>
+        <div class="poi-tip">
+          💡 미술 좋아하면 ⭐ — 시큰둥하면 SKIP. 1시간이라 부담 적음.
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- 그룹 4: 음식·문화 -->
+  <div class="group-head">
+    <h2>🍻 4. 음식·문화</h2>
+    <div class="group-sub">체코 맥주 종주국 · Trdelník 길거리 디저트 · 13세기 양조장</div>
+  </div>
+
+  <div class="poi-grid">
+
+    <!-- 12. Eggenberg 양조장 -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pivovar_Eggenberg.jpg?width=600" alt="Eggenberg 양조장" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Eggenberg_Brewery_Cesky_Krumlov.jpg?width=600'">
+        <span class="badge">1560년대</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>30분 (식당) / 1h (투어)</span>
+          <span class="paid">맥주 €3 · 투어 €10</span>
+          <span>현장 양조장</span>
+        </div>
+        <h3>Eggenberg 양조장 (Pivovar Eggenberg)</h3>
+        <div class="poi-sub">1560년대부터 양조 · 체스키 시그니처 맥주</div>
+        <p class="poi-desc">광장에서 도보 5분 (Latrán 끝). <b>현장 양조장 + 비어홀 + 가이드 투어</b>. 시그니처: <b>Eggenberg Lager·Dark·Wheat</b>. 옛 양조 설비 그대로. 비어홀에서 부담 없이 한 잔 + 체코 가정식.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 마을 양조장 분위기 — 잘츠 Augustiner의 체코 버전. 부담 적고 캐주얼.
+        </div>
+        <div class="poi-tip">
+          💡 6/19 점심 옵션 ⭐. 가이드 투어 X 비어홀만으로도 충분.
+        </div>
+      </div>
+    </article>
+
+    <!-- 13. Trdelník -->
+    <article class="poi-card">
+      <div class="poi-img">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Trdelnik_in_Prague.jpg?width=600" alt="Trdelník" loading="lazy" onerror="this.src='https://commons.wikimedia.org/wiki/Special:FilePath/Trdelnik.jpg?width=600'">
+        <span class="badge">길거리</span>
+      </div>
+      <div class="poi-body">
+        <div class="poi-meta">
+          <span>10분</span>
+          <span class="paid">€3~5</span>
+          <span>설탕·시나몬</span>
+        </div>
+        <h3>Trdelník (트르델닉)</h3>
+        <div class="poi-sub">통나무에 둘러 구운 페이스트리 · 설탕·시나몬 코팅</div>
+        <p class="poi-desc">광장 노점 多. 반죽을 통나무 막대에 감아 숯불 위에서 굴려가며 굽고, 표면을 설탕·시나몬·호두로 코팅. <b>안에 아이스크림 채운 버전 €5</b> (여름 시그니처). 갓 구워서 따뜻함.</p>
+        <div class="poi-attract">
+          <b>매력</b>: 첫 체코 길거리 음식 — 부모님께 익숙한 도넛·붕어빵 류와 닮음. 손에 들고 산책 OK.
+        </div>
+        <div class="poi-tip">
+          💡 사실은 슬로바키아·헝가리 기원이지만 체코·프라하 관광지에서 유명해짐. 한 번은 시식 가치.
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- 추천 동선 -->
+  <div class="plan">
+    <h2>🗓 추천 — 양일 분산 동선 (워킹투어 없이)</h2>
+
+    <div class="plan-tabs">
+      <span>6/18 PM (도착·핵심)</span>
+      <span>6/19 AM (마무리·자유)</span>
+    </div>
+
+    <h3 style="color:var(--wine); font-size:1rem; margin:14px 0 6px;">📅 6/18 (목) PM — 도착 + 광장·강변·다리·디너·야경</h3>
+    <div class="plan-row"><div class="t">15:30</div><div class="a">Bean Shuttle 호텔 도어투도어 도착</div></div>
+    <div class="plan-row"><div class="t">15:45</div><div class="a">Hotel Ebersbach 체크인</div></div>
+    <div class="plan-row"><div class="t">16:30</div><div class="a"><b>스보르노스티 광장 + Latrán 거리 + 이발사의 다리</b> 산책 (1.5h)</div></div>
+    <div class="plan-row"><div class="t">18:00</div><div class="a"><b>강변 + 망토 다리 + 성 외관 + 곰</b> (1h)</div></div>
+    <div class="plan-row"><div class="t">19:00</div><div class="a">디너 — Krčma v Šatlavské (13세기 감옥 개조, 1.5~2h)</div></div>
+    <div class="plan-row"><div class="t">20:45</div><div class="a"><b>황혼 매직아워 ⭐⭐</b> — 망토 다리·성 야경 (45분)</div></div>
+    <div class="plan-row"><div class="t">21:30</div><div class="a">호텔 복귀</div></div>
+
+    <h3 style="color:var(--wine); font-size:1rem; margin:18px 0 6px;">📅 6/19 (금) AM — 성 정원·교회·아침 산책 + 양조장 점심</h3>
+    <div class="plan-row"><div class="t">08:00</div><div class="a">조식 (1h 천천히)</div></div>
+    <div class="plan-row"><div class="t">09:30</div><div class="a">체크아웃 + 짐 보관</div></div>
+    <div class="plan-row"><div class="t">10:00</div><div class="a"><b>성 정원 산책 ⭐</b> — 평지·무료·인적 적음 (1h)</div></div>
+    <div class="plan-row"><div class="t">11:00</div><div class="a"><b>성 비투스 교회</b> + 마을 골목 (Kájovská) — 도공거리 (45분)</div></div>
+    <div class="plan-row"><div class="t">11:45</div><div class="a">광장 카페 휴식 또는 강변 산책 (30분)</div></div>
+    <div class="plan-row"><div class="t">12:15</div><div class="a"><b>Eggenberg 양조장 비어홀 점심 ⭐</b> — Eggenberg Lager + 체코 가정식</div></div>
+    <div class="plan-row"><div class="t">13:00</div><div class="a">Trdelník 길거리 디저트 (광장 노점)</div></div>
+    <div class="plan-row"><div class="t">13:30</div><div class="a">호텔 짐 회수</div></div>
+    <div class="plan-row"><div class="t">13:40</div><div class="a">Špičák 정류장 도보 5분</div></div>
+    <div class="plan-row"><div class="t">14:00</div><div class="a"><b>RegioJet → 프라하 출발</b> (도착 16:45 Na Knížecí)</div></div>
+
+    <div style="background:#eef6e3; border-left:3px solid #7a9456; padding:12px 14px; border-radius:0 6px 6px 0; margin-top:16px; font-size:0.86rem; color:#3d5223;">
+      <b>💡 양일 분산의 장점</b>: 워킹투어 영어 부담 X · 6/19 AM <b>성 정원 + 교회</b>가 부모님 페이스에 OK · Eggenberg 양조장이 양조장 정수 (잘츠 Augustiner 체코 버전). 성탑·Circuit·실레는 시간 부족하면 SKIP 가능.
+    </div>
+  </div>
+
+  <div style="margin-top:30px; padding:18px 22px; background:var(--paper); border-radius:10px; box-shadow:var(--shadow); font-size:0.86rem; color:var(--text-mute); line-height:1.7;">
+    <b style="color:var(--wine);">📌 빼고 가도 좋은 것</b>: 성 Circuit I 영어 가이드 (영어 부담), 성탑 162계단 (무릎 부담), 회전 야외 극장 (저녁 공연만 의미), 실레 미술관 (미술 시큰둥하면).<br><br>
+    <b style="color:var(--wine);">📌 진짜 핵심 (지금 일정 그대로)</b>: 광장 · 망토 다리 · 이발사 다리 · 성 외관·곰 · 강변 · 황혼 매직아워 · 디너.<br><br>
+    <b style="color:var(--wine);">📌 추가하면 풍부해지는 것</b>: 성 정원 (무료·평지) · 성 비투스 교회 (무료·짧음) · Eggenberg 양조장 (점심) · Latrán 다시 한번 (아침 인적 적은 시간).
+  </div>
+
+</div>
+
+<script>
+  // 카드 순서대로 이모지·색상 매핑 (HTML 카드 등장 순서)
+  const meta = [
+    { emoji: '🏰', color: 'castle' },  // 0 성 외관·곰
+    { emoji: '👑', color: 'castle' },  // 1 Circuit I
+    { emoji: '🗼', color: 'castle' },  // 2 성탑
+    { emoji: '🌳', color: 'castle' },  // 3 성 정원
+    { emoji: '🌉', color: 'bridge' },  // 4 망토 다리
+    { emoji: '🪞', color: 'bridge' },  // 5 이발사 다리
+    { emoji: '🚤', color: 'river' },   // 6 블타바 강
+    { emoji: '🏛', color: 'town' },    // 7 스보르노스티 광장
+    { emoji: '🛤', color: 'town' },    // 8 Latrán 거리
+    { emoji: '⛪', color: 'church' },  // 9 성 비투스 교회
+    { emoji: '🎨', color: 'art' },     // 10 실레 미술관
+    { emoji: '🍺', color: 'food' },    // 11 Eggenberg 양조장
+    { emoji: '🍩', color: 'food' },    // 12 Trdelník
+  ];
+  document.querySelectorAll('.poi-img').forEach((box, i) => {
+    if (!meta[i]) return;
+    box.dataset.emoji = meta[i].emoji;
+    box.dataset.color = meta[i].color;
+  });
+  // 모든 이미지에 2.5초 후 강제 체크 — 안 로드되면 fallback으로 전환
+  // (inline onerror가 두 번째 URL 시도하는 시간 + 추가 여유)
+  setTimeout(() => {
+    document.querySelectorAll('.poi-img img').forEach(img => {
+      if (!img.complete || img.naturalWidth === 0) {
+        img.parentElement.classList.add('no-img');
+      }
+    });
+  }, 2500);
+</script>
+
+</body>
+</html>
